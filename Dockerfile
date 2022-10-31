@@ -20,7 +20,6 @@ RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get > get_he
 
 # Install the Drone plugin scripts
 COPY update.sh /bin/
-COPY connect-eks.sh /bin/
 
 ENTRYPOINT ["/bin/bash"]
 CMD ["/bin/update.sh"]
