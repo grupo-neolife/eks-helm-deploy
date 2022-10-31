@@ -1,0 +1,28 @@
+name: EKS Helm Deploy
+description: Deploy a Helm chart to an EKS cluster
+inputs:
+  eks_cluster:  
+    description: Name of the EKS cluster which will be used for deployment, (required)
+    required: true
+  release:
+    description: Name of the Helm release, (required)
+    required: true
+  namespace:
+    description: Kubernetes namespace name. (required)
+    required: true
+  chart:
+    description: Helm chart path. If set to "app" this will use the built in helm
+      chart found in this repository. (required)
+    required: true
+  tag:
+    description: Release tag to deploy. (required)
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    EKS_CLUSTER: ${{ inputs.eks_cluster }}
+    RELEASE: ${{ inputs.release }}
+    NAMESPACE: ${{ inputs.namespace }}
+    CHART: ${{ inputs.chart }}
+    TAG: ${{ inputs.tag }}
